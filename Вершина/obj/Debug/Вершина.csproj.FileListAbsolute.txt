@@ -1,0 +1,10 @@
+C:\Users\maxim\Desktop\Вершина\Вершина\obj\Debug\Вершина.csprojAssemblyReference.cache
+C:\Users\maxim\Desktop\Вершина\Вершина\obj\Debug\Вершина.Form1.resources
+C:\Users\maxim\Desktop\Вершина\Вершина\obj\Debug\Вершина.Properties.Resources.resources
+C:\Users\maxim\Desktop\Вершина\Вершина\obj\Debug\Вершина.csproj.GenerateResource.cache
+C:\Users\maxim\Desktop\Вершина\Вершина\obj\Debug\Вершина.csproj.CoreCompileInputs.cache
+C:\Users\maxim\Desktop\Вершина\Вершина\bin\Debug\Вершина.exe.config
+C:\Users\maxim\Desktop\Вершина\Вершина\bin\Debug\Вершина.exe
+C:\Users\maxim\Desktop\Вершина\Вершина\bin\Debug\Вершина.pdb
+C:\Users\maxim\Desktop\Вершина\Вершина\obj\Debug\Вершина.exe
+C:\Users\maxim\Desktop\Вершина\Вершина\obj\Debug\Вершина.pdb
