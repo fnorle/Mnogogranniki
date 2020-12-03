@@ -13,6 +13,8 @@ namespace Вершина
     {
         protected int x;
         protected int y;
+        protected int delx;
+        protected int dely;
 
         public Apex(int x, int y)
         {
@@ -31,6 +33,9 @@ namespace Вершина
             R = 25;
             color = Color.Turquoise;
         }
+
+        public int delX { get { return delx; } set { delx = value; } }
+        public int delY { get { return dely; } set { dely = value; } }
 
         public abstract void DrawApex(Graphics g);
 
@@ -59,9 +64,10 @@ namespace Вершина
         public override bool Check(int ex, int ey)
         {
             //посчитать катеты, сравнить гипотенузы с радиусом
-            if (((x - ex) ^ 2 + (y - ey) ^ 2) <= R) return true;
+            if (((x - ex) * (x - ex) + (y - ey) * (y - ey)) <= R * R) return true;
             else return false;
         }
+
     }
 
     //Треугольник
@@ -83,12 +89,7 @@ namespace Вершина
 
         public override bool Check(int ex, int ey)
         {
-            /*float Sabc = 2 * R * R;
-            float Sapb = 
-            float Sapc =
-            float Sbcp =*/
-            
-            if (ey <= -2* ex + (Y - R) && ey <=2 * x + (Y - R) && ey >= Y + R) return true;
+            if (ey <= y + R && ey + 2 * ex - y + R - 2 * x >= 0 && ey - 2 * ex - y + R + 2 * x >= 0) return true;
             else return false;
         }
     }
@@ -109,6 +110,7 @@ namespace Вершина
             if ((y - R) <= ey && (y + R) >= ey && (x - R) <= ex && (x + R) >= ex) return true;
             else return false;
         }
+
     }
 
 }
