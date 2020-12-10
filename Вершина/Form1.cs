@@ -17,7 +17,7 @@ namespace Вершина
 
         int whatShape; // какая фигура выбрана? (0 - круг, 1 - квадрат, 2 - треугольник)
         bool isDraw; // существует ли вершина
-        bool isDrag; // флаг на перетаскивание
+        //bool isDrag; // флаг на перетаскивание
 
         List<Apex> list = new List<Apex>();
         
@@ -27,7 +27,7 @@ namespace Вершина
             /*delx = 0;
             dely = 0;*/
             isDraw = false;
-            isDrag = false;
+            //isDrag = false;
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -45,52 +45,36 @@ namespace Вершина
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             bool usl = false;
-            
-            foreach(Apex i in list)
+            if (list.Any())
             {
-                if (i.Check(i.X, i.Y)) { usl = true; break; }
-            }
 
-            //попали ли в вершину
-            if (isDraw && usl)
-            {
-                if (e.Button == MouseButtons.Left)
-                {   
-                    //включить флаг на перетаскивание
-                    isDrag = true;
 
-                    //зафиксировать расстояние между мышкой и серединой вершины (х, у)
-                    
-                    /*delx = e.X - shape.X;
-                    dely = e.Y - shape.Y;*/ 
+                foreach (Apex i in list)
+                {//попали ли в вершину
 
-                    foreach (Apex i in list)
+                    if (i.Check(e.X, e.Y))
                     {
-                        i.delX = e.X - i.X;
-                        i.delY = e.Y - i.Y;
-                    }
-
-                }
-                if(e.Button == MouseButtons.Right)
-                {
-                    isDraw = false;
-                    isDrag = false;
-
-                    int index = -1;
-
-                    foreach (Apex i in list)
-                    {
-                        index++;
-                        if (i.Check(i.X, i.Y) == true) 
+                        usl = true;
+                        if (e.Button == MouseButtons.Left)
                         {
-                            list[index] = null;
-                            //list.RemoveAt(index);
-                            index--;
-                        }   
+                            //включить флаг на перетаскивание
+                            i.isDrag = true;
+
+                            //зафиксировать расстояние между мышкой и серединой вершины (х, у)
+                            i.delX = e.X - i.X;
+                            i.delY = e.Y - i.Y;
+                            
+                        }
+                        if (e.Button == MouseButtons.Right)
+                        {
+                            list.Remove(i);
+                            this.Refresh();                           
+                            break;
+                        }
                     }
                 }
             }
-            else
+            if(!usl && e.Button == MouseButtons.Left)
             {
                 isDraw = true;
                 switch (whatShape)
@@ -111,16 +95,13 @@ namespace Вершина
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (isDrag)
+            foreach (Apex i in list)
             {
-                foreach (Apex i in list)
+                if (i.isDrag)
                 {
                     i.X = e.X - i.delX;
                     i.Y = e.Y - i.delY;
                 }
-
-                /*shape.X = e.X - delx;
-                shape.Y = e.Y - dely;*/
             }
             this.Invalidate();
         }
@@ -149,13 +130,11 @@ namespace Вершина
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
             //выключаем флаг
-            if (isDraw)
+            foreach (Apex i in list)
             {
-                isDrag = false;
-                //isDraw = false;
-
-                this.Invalidate();
+                i.isDrag = false;
             }
+            //this.Invalidate();
         }
 
     }

@@ -15,6 +15,7 @@ namespace Вершина
         protected int y;
         protected int delx;
         protected int dely;
+        //protected bool IsDrag; // флаг на перетаскивание
 
         public Apex(int x, int y)
         {
@@ -22,17 +23,19 @@ namespace Вершина
             this.y = y;
         }
 
-        public Apex()
+        /*public Apex()
         {
             x = 100;
             y = 100;
-        }
+        }*/
 
         static Apex()
         {
             R = 25;
             color = Color.Turquoise;
         }
+
+        public bool isDrag { get; set; } // флаг на перетаскивание
 
         public int delX { get { return delx; } set { delx = value; } }
         public int delY { get { return dely; } set { dely = value; } }
@@ -53,7 +56,7 @@ namespace Вершина
     public class Circle : Apex
     {
         public Circle(int x, int y) : base(x, y) { }
-        public Circle() : base() { }
+        //public Circle() : base() { }
 
 
         public override void DrawApex(Graphics g)
@@ -74,7 +77,7 @@ namespace Вершина
     public class Triangle : Apex
     {
         public Triangle(int x, int y) : base(x, y) { }
-        public Triangle() : base() { }
+        //public Triangle() : base() { }
 
         public override void DrawApex(Graphics g)
         {
@@ -98,7 +101,7 @@ namespace Вершина
     public class Square : Apex
     {
         public Square(int x, int y) : base(x, y) { }
-        public Square() : base() { }
+        //public Square() : base() { }
 
         public override void DrawApex(Graphics g)
         {
